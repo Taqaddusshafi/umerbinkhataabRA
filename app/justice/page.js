@@ -1,6 +1,7 @@
 import HeroSection from '../../components/HeroSection';
 import SectionReveal from '../../components/SectionReveal';
 import QuoteCard from '../../components/QuoteCard';
+import NightPatrolGame from '../../components/NightPatrolGame';
 import styles from '../subpage.module.css';
 
 export const metadata = {
@@ -28,7 +29,16 @@ export default function Justice() {
         </SectionReveal>
 
         <SectionReveal delay={100}>
+          <NightPatrolGame />
+        </SectionReveal>
+
+        <SectionReveal delay={200}>
           <div className={styles.articleBody}>
+            <h2>Historical Records of His Justice</h2>
+            <p>
+              The interactive scenarios above are drawn directly from early Islamic histories. Below, we examine the formal administrative framework and other instances of Umar&apos;s legendary commitment to absolute justice.
+            </p>
+            
             <h2>The Famine and the Clay Pot</h2>
             <p>
               During the Year of Ramadah (Famine) in 18 AH, Umar refused to eat butter, meat, or fat, surviving solely on olive oil, which made his skin turn dark. He swore: &ldquo;How can I concern myself with my subjects if I do not experience what they experience?&rdquo;

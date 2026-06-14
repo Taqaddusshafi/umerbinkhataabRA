@@ -1,6 +1,7 @@
 import HeroSection from '../../components/HeroSection';
 import SectionReveal from '../../components/SectionReveal';
 import QuoteCard from '../../components/QuoteCard';
+import ConquestsMap from '../../components/ConquestsMap';
 import styles from '../subpage.module.css';
 
 export const metadata = {
@@ -28,7 +29,16 @@ export default function Conquests() {
         </SectionReveal>
 
         <SectionReveal delay={100}>
+          <ConquestsMap />
+        </SectionReveal>
+
+        <SectionReveal delay={200}>
           <div className={styles.articleBody}>
+            <h2>Historical Campaigns & Conquests</h2>
+            <p>
+              The campaigns detailed in the interactive map above laid the foundations for a global civilization. Below, we examine the specific military strategies and treaties that defined Umar&apos;s era.
+            </p>
+            
             <h2>The Conquest of the Levant & the Battle of Yarmouk</h2>
             <p>
               In 636 CE, near the Yarmouk River, a Muslim army led by Khalid ibn al-Walid (رضي الله عنه) confronted a massive Byzantine force. 

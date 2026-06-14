@@ -1,6 +1,8 @@
 import HeroSection from '../../components/HeroSection';
 import SectionReveal from '../../components/SectionReveal';
 import QuoteCard from '../../components/QuoteCard';
+import WisdomEngine from '../../components/WisdomEngine';
+import QuoteGenerator from '../../components/QuoteGenerator';
 import styles from '../subpage.module.css';
 
 export const metadata = {
@@ -65,9 +67,23 @@ export default function Quotes() {
           </div>
         </SectionReveal>
 
-        <div style={{ display: 'grid', gap: 'var(--space-xl)', marginTop: 'var(--space-3xl)' }}>
+        <SectionReveal delay={100}>
+          <WisdomEngine />
+        </SectionReveal>
+
+        <SectionReveal delay={150}>
+          <QuoteGenerator />
+        </SectionReveal>
+
+        <SectionReveal delay={200}>
+          <h2 style={{ fontSize: '1.8rem', color: 'var(--accent-gold)', marginBottom: 'var(--space-xl)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.5rem' }}>
+            Sayings Gallery
+          </h2>
+        </SectionReveal>
+
+        <div style={{ display: 'grid', gap: 'var(--space-xl)' }}>
           {quotes.map((quote, index) => (
-            <SectionReveal key={index} delay={index * 50}>
+            <SectionReveal key={index} delay={50}>
               <QuoteCard
                 arabic={quote.arabic}
                 english={quote.english}

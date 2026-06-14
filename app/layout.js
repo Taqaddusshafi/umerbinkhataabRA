@@ -1,6 +1,7 @@
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import AmbientSoundscape from '../components/AmbientSoundscape';
 
 export const metadata = {
   title: 'Umar ibn Al-Khattab (رضي الله عنه) — Al-Farooq',
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning>
         <Navbar />
         <main>{children}</main>
+        <AmbientSoundscape />
         <Footer />
       </body>
     </html>
