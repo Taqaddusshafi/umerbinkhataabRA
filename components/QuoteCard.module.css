@@ -1,0 +1,77 @@
+.card {
+  position: relative;
+  padding: var(--space-2xl) var(--space-2xl);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--space-2xl);
+  right: var(--space-2xl);
+  height: 1px;
+  background: var(--gradient-gold);
+  opacity: 0.3;
+}
+
+.card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow-gold);
+}
+
+.quoteSymbol {
+  font-family: var(--font-arabic);
+  font-size: 4rem;
+  color: var(--accent-gold);
+  opacity: 0.2;
+  line-height: 1;
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-xl);
+}
+
+.arabicQuote {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: var(--accent-gold-light);
+  direction: rtl;
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+  text-align: right;
+}
+
+.englishQuote {
+  font-family: var(--font-english);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--text-primary);
+  font-style: italic;
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+  opacity: 0.9;
+}
+
+.attribution {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.attributionLine {
+  width: 24px;
+  height: 1px;
+  background: var(--accent-gold-dim);
+}
+
+.attributionName {
+  color: var(--accent-gold);
+  font-weight: 500;
+}
