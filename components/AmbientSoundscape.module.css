@@ -1,3 +1,101 @@
+.entryGate {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: var(--space-lg);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(199, 163, 91, 0.18), transparent 34rem),
+    rgba(5, 8, 12, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.entryPanel {
+  width: min(100%, 460px);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: clamp(1.6rem, 4vw, 2.5rem);
+  background: var(--bg-glass);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+  text-align: center;
+}
+
+.entryEyebrow {
+  margin: 0 0 var(--space-sm);
+  color: var(--accent-gold);
+  font-family: var(--font-english);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.entryTitle {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-english);
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  line-height: 1.05;
+}
+
+.entryText {
+  margin: var(--space-md) 0 var(--space-xl);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.entryActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.enterBtn,
+.quietBtn {
+  border-radius: 100px;
+  padding: 0.85rem 1.3rem;
+  font-family: var(--font-english);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.enterBtn {
+  border: 1px solid var(--accent-gold);
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  box-shadow: var(--shadow-gold);
+}
+
+.enterBtn:hover {
+  background: var(--accent-gold-light);
+  border-color: var(--accent-gold-light);
+  transform: translateY(-2px);
+}
+
+.enterBtn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
+}
+
+.quietBtn {
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.quietBtn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
 .widget {
   position: fixed;
   bottom: var(--space-xl);
@@ -32,6 +130,12 @@
   color: var(--accent-gold-light);
   box-shadow: var(--shadow-gold-hover);
   transform: translateY(-2px);
+}
+
+.toggleBtn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
 }
 
 /* Sound waves animation */
