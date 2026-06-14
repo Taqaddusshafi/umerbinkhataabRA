@@ -85,19 +85,27 @@ export default function ConquestsMap() {
           <svg className={styles.svgMap} viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(201, 168, 76, 0.025)" strokeWidth="0.5"/>
+                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(201, 168, 76, 0.06)" strokeWidth="0.5"/>
               </pattern>
               <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="6" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
+              <linearGradient id="seaGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="rgba(26, 112, 138, 0.32)" />
+                <stop offset="100%" stopColor="rgba(12, 52, 72, 0.16)" />
+              </linearGradient>
             </defs>
 
             {/* Grid overlay */}
             <rect width="100%" height="100%" fill="url(#grid)" />
 
-            {/* 1. Mediterranean & Red Sea Water Outlines (Decorative base) */}
-            <path d="M 40 210 Q 150 210 250 210 M 270 230 Q 300 320 340 430" stroke="rgba(255,255,255,0.03)" strokeWidth="2" strokeDasharray="3 3" />
+            {/* Water bodies for clearer orientation */}
+            <path d="M 0 145 C 95 125, 190 136, 270 160 L 255 210 C 185 205, 100 212, 0 205 Z" fill="url(#seaGradient)" />
+            <path d="M 282 245 C 305 300, 326 366, 350 470" stroke="rgba(70, 170, 190, 0.34)" strokeWidth="18" strokeLinecap="round" />
+            <path d="M 555 328 C 610 318, 650 328, 700 358" stroke="rgba(70, 170, 190, 0.26)" strokeWidth="22" strokeLinecap="round" />
+            <text x="82" y="178" fill="rgba(183, 225, 232, 0.42)" fontSize="12" fontWeight="700" letterSpacing="0.16em" pointerEvents="none">MEDITERRANEAN SEA</text>
+            <text x="306" y="365" fill="rgba(183, 225, 232, 0.36)" fontSize="10" fontWeight="700" letterSpacing="0.12em" pointerEvents="none" transform="rotate(69 306 365)">RED SEA</text>
 
             {/* 2. EGYPT (Geographical Sinai & Nile Delta contours) */}
             <path
@@ -194,10 +202,11 @@ export default function ConquestsMap() {
             )}
 
             {/* Geographical Region Labels */}
-            <text x="360" y="380" fill="rgba(255,255,255,0.2)" fontSize="16" fontWeight="800" letterSpacing="0.2em" pointerEvents="none">ARABIA</text>
-            <text x="610" y="200" fill="rgba(255,255,255,0.2)" fontSize="15" fontWeight="800" letterSpacing="0.2em" pointerEvents="none">PERSIA</text>
-            <text x="110" y="280" fill="rgba(255,255,255,0.2)" fontSize="15" fontWeight="800" letterSpacing="0.2em" pointerEvents="none">EGYPT</text>
-            <text x="310" y="125" fill="rgba(255,255,255,0.2)" fontSize="10" fontWeight="800" letterSpacing="0.1em" pointerEvents="none">SYRIA</text>
+            <text x="360" y="380" fill="rgba(255,255,255,0.48)" fontSize="16" fontWeight="900" letterSpacing="0.2em" pointerEvents="none">ARABIA</text>
+            <text x="610" y="200" fill="rgba(255,255,255,0.48)" fontSize="15" fontWeight="900" letterSpacing="0.2em" pointerEvents="none">PERSIA</text>
+            <text x="110" y="280" fill="rgba(255,255,255,0.48)" fontSize="15" fontWeight="900" letterSpacing="0.2em" pointerEvents="none">EGYPT</text>
+            <text x="310" y="125" fill="rgba(255,255,255,0.5)" fontSize="10" fontWeight="900" letterSpacing="0.1em" pointerEvents="none">SYRIA</text>
+            <text x="426" y="214" fill="rgba(255,255,255,0.44)" fontSize="10" fontWeight="900" letterSpacing="0.1em" pointerEvents="none">IRAQ</text>
           </svg>
 
           {/* Current Year display overlay inside map */}
