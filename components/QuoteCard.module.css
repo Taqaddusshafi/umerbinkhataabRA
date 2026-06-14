@@ -27,14 +27,14 @@
 }
 
 .quoteSymbol {
-  font-family: var(--font-arabic);
-  font-size: 4rem;
+  font-family: var(--font-english);
+  font-size: 4.5rem;
   color: var(--accent-gold);
-  opacity: 0.2;
+  opacity: 0.12;
   line-height: 1;
   position: absolute;
   top: var(--space-md);
-  right: var(--space-xl);
+  left: var(--space-xl);
 }
 
 .arabicQuote {
