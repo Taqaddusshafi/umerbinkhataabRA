@@ -10,7 +10,6 @@ export default function AmbientSoundscape() {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [showEntryGate, setShowEntryGate] = useState(true);
   const playerRef = useRef(null);
-  const removeInteractionListenersRef = useRef(() => {});
 
   const isPlayerReadyRef = useRef(false);
   const hasUserPausedRef = useRef(false);
@@ -21,39 +20,6 @@ export default function AmbientSoundscape() {
 
     let isMounted = true;
 
-    const startAudiblePlayback = () => {
-      if (!playerRef.current || !isPlayerReadyRef.current || hasUserPausedRef.current) return;
-
-      try {
-        playerRef.current.unMute();
-        playerRef.current.setVolume(50);
-        playerRef.current.playVideo();
-        setIsPlaying(true);
-        setShowEntryGate(false);
-      } catch (error) {
-        console.error('Audio playback failed:', error);
-      }
-    };
-
-    const handleFirstInteraction = () => {
-      startAudiblePlayback();
-      if (isPlayerReadyRef.current) {
-        removeInteractionListenersRef.current();
-      }
-    };
-
-    const addInteractionListeners = () => {
-      window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
-      window.addEventListener('keydown', handleFirstInteraction);
-      window.addEventListener('scroll', handleFirstInteraction, { passive: true, once: true });
-    };
-
-    removeInteractionListenersRef.current = () => {
-      window.removeEventListener('pointerdown', handleFirstInteraction);
-      window.removeEventListener('keydown', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
-    };
-
     const ensurePlayerContainer = () => {
       let container = document.getElementById('yt-player-container');
       if (container) {
@@ -61,13 +27,15 @@ export default function AmbientSoundscape() {
       } else {
         container = document.createElement('div');
         container.id = 'yt-player-container';
-        container.style.position = 'absolute';
+        container.style.position = 'fixed';
         container.style.width = '1px';
         container.style.height = '1px';
-        container.style.top = '-999px';
-        container.style.left = '-999px';
-        container.style.opacity = '0';
+        container.style.bottom = '0';
+        container.style.left = '0';
+        container.style.opacity = '0.01';
         container.style.pointerEvents = 'none';
+        container.style.overflow = 'hidden';
+        container.style.zIndex = '-1';
         document.body.appendChild(container);
       }
 
@@ -84,12 +52,14 @@ export default function AmbientSoundscape() {
       playerRef.current = new window.YT.Player('yt-player-iframe', {
         videoId: VIDEO_ID,
         playerVars: {
-          autoplay: 1,
+          autoplay: 0,
           controls: 0,
           disablekb: 1,
+          enablejsapi: 1,
           fs: 0,
           loop: 1,
           modestbranding: 1,
+          origin: window.location.origin,
           playsinline: 1,
           playlist: VIDEO_ID,
           rel: 0,
@@ -101,16 +71,11 @@ export default function AmbientSoundscape() {
             isPlayerReadyRef.current = true;
             setIsPlayerReady(true);
             event.target.setVolume(50);
+            event.target.pauseVideo();
 
-            // Browsers allow muted autoplay more consistently. The first user gesture unmutes it.
-            try {
-              event.target.mute();
-              event.target.playVideo();
-            } catch (error) {
-              console.info('Muted autoplay is unavailable until interaction:', error);
-            }
-
-            addInteractionListeners();
+            const iframe = event.target.getIframe?.();
+            iframe?.setAttribute('allow', 'autoplay; encrypted-media; fullscreen; picture-in-picture');
+            iframe?.setAttribute('playsinline', '1');
           },
           onStateChange: (event) => {
             if (!window.YT?.PlayerState) return;
@@ -149,7 +114,6 @@ export default function AmbientSoundscape() {
     return () => {
       isMounted = false;
       isPlayerReadyRef.current = false;
-      removeInteractionListenersRef.current();
       if (playerRef.current && typeof playerRef.current.destroy === 'function') {
         try {
           playerRef.current.destroy();
@@ -184,7 +148,6 @@ export default function AmbientSoundscape() {
         setIsPlaying(true);
         setShowEntryGate(false);
         hasUserPausedRef.current = false;
-        removeInteractionListenersRef.current();
       } catch (err) {
         console.error('Play failed:', err);
       }
