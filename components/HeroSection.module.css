@@ -48,7 +48,7 @@
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: var(--accent-gold);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-4xl);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,11 +65,12 @@
 
 .arabicTitle {
   font-family: var(--font-arabic);
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
   font-weight: 700;
   color: var(--accent-gold);
-  line-height: 1.2;
-  margin-bottom: var(--space-lg);
+  line-height: 1.5;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
   direction: rtl;
   animation: text-glow 4s ease-in-out infinite;
 }
